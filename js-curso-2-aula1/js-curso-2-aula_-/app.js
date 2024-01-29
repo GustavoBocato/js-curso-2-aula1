@@ -1,5 +1,6 @@
 let numeroSecreto;
 let numeroDeTentativas;
+let numeroMaximo = 10;
 
 novoJogo();
 
@@ -42,29 +43,22 @@ function verificarChute() {
 
 }
 
-function gerarNaturalAleatório(minN, maxN){
+function gerarNaturalAleatório(maxN){
 
-    let numeroAleatorio = parseInt(Math.random()*maxN + 1);
-
-    while(numeroAleatorio > maxN || numeroAleatorio < minN){
-
-        numeroAleatorio = parseInt(Math.random()*maxN + 1);
-
-    }
-
-    return numeroAleatorio;
+    return parseInt(Math.random()*maxN + 1);
 
 }
 
 function novoJogo(){
 
-    numeroSecreto = gerarNaturalAleatório(1, 10);
+    numeroSecreto = gerarNaturalAleatório(numeroMaximo);
     numeroDeTentativas = 0;
 
     exibirTextoNaTela('h1', 'Jogo de advinhação de um número secreto.');
-    exibirTextoNaTela('p', 'Entre um número natural de 1 a 10');
+    exibirTextoNaTela('p', `Entre um número natural de 1 a ${numeroMaximo}.`);
 
     document.querySelector('input').value = '';
     document.getElementById('reiniciar').setAttribute('disabled', 'true');
+    document.querySelector('input').setAttribute('max', `${numeroMaximo}`);
 
 }
